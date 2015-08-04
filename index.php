@@ -14,7 +14,7 @@
 require_once( dirname(__FILE__).'/includes/load-yourls.php' );
 
 // Change this to match the URL of your public interface. Something like: http://your-own-domain-here.com/index.php
-$page = YOURLS_SITE . '/sample-public-front-page.php' ;
+$page = YOURLS_SITE . '/index.php' ;
 
 // Part to be executed if FORM has been submitted
 if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ) {
@@ -88,6 +88,41 @@ HTML;
 }
 
 ?>
+
+<h2>Links</h2>
+<?php
+$table_url = YOURLS_DB_TABLE_URL;
+$where = '';
+
+yourls_table_head();
+yourls_table_tbody_start();
+
+// Main Query
+$where = yourls_apply_filter( 'admin_list_where', $where );
+$url_results = $ydb->get_results( "SELECT * FROM `$table_url` WHERE 1=1 $where ORDER BY `timestamp` DESC;" );
+$found_rows = false;
+
+if( $url_results ) {
+        $found_rows = true;
+        foreach( $url_results as $url_result ) {
+                $keyword = yourls_sanitize_string( $url_result->keyword );
+                $timestamp = strtotime( $url_result->timestamp );
+                $url = stripslashes( $url_result->url );
+                $ip = $url_result->ip;
+                $title = $url_result->title ? $url_result->title : '';
+                $clicks = $url_result->clicks;
+
+                echo yourls_table_add_row( $keyword, $url, $title, $ip, $clicks, $timestamp );
+         }
+}
+
+$display = $found_rows ? 'display:none' : '';
+echo '<tr id="nourl_found" style="'.$display.'"><td colspan="6">' . yourls__('No URL') . '</td></tr>';
+
+yourls_table_tbody_end();
+yourls_table_end();
+?>
+
 
 <h2>Bookmarklets</h2>
 

@@ -1,4 +1,4 @@
-
+<?php 
 /*
  * This is an example file for a public interface and a bookmarklet. It
  * is provided so you can build from it and customize to suit your needs.
@@ -145,4 +145,3 @@ yourls_table_end();
 
 // Display page footer
 yourls_html_footer();
-                                                                      

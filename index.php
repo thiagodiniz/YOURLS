@@ -1,4 +1,4 @@
-?php
+<?php
 
 /*
  * This is an example file for a public interface and a bookmarklet. It
@@ -112,4 +112,4 @@ HTML;
 <?php
 
 // Display page footer
-yourls_html_footer();	
+yourls_html_footer();

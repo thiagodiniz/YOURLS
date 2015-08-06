@@ -68,12 +68,9 @@ if ( false === $return ) {
 
 
 if($is_not_channel){
-  error_log("testando DM e PC");
    yourls_api_output( "simple", array(
-      'simple' => true,
-      'message' => 'Your link is ' .   $return['url']['url']  . '\nSorry, but I am still figuring out how to share links on '. $channel_name,
+      'simple' =>  'Your shortlink is ' .   $return['url']['url']  . '\nSorry, but I am still figuring out how to share links on '. $channel_name
    ) );
-   error_log("não deu bronca e foi!");
 
    die();
 }

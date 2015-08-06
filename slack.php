@@ -68,7 +68,7 @@ if ( false === $return ) {
 
 
 if($is_not_channel){
-  $message_with_link = 'Sorry, I am still figuring out how to share links on '. $channel_name . ', but here is your shortlink: ' . $return['shortlink'];
+  $message_with_link = 'Sorry, I am still figuring out how to share links on '. $channel_name . ', but here is your shortlink: ' . $return['simple'];
 
    yourls_api_output( "simple", array(
       'simple' =>  $message_with_link

@@ -12,10 +12,8 @@ require_once( dirname( __FILE__ ) . '/includes/load-yourls.php' );
 // token=e0xywzLDHsQPUwhC6lJQIlwP
 //  $_REQUEST['token']
 
-
-
 $channel_name = $_REQUEST['channel_name'];
-$is_channel = $channel_name ==  'privatechannel' && $channel_name == 'directmessage';
+$is_not_channel = $channel_name ==  'privatechannel' && $channel_name == 'directmessage';
 
 $_REQUEST['url'] = $_REQUEST['text'] ;
 
@@ -35,21 +33,6 @@ if ( $_REQUEST['token'] != 'e0xywzLDHsQPUwhC6lJQIlwP'){
 
 error_log("channel:" . $_REQUEST['channel_name'] . " user_name:" . $_REQUEST['user_name'] ." channel_id:" . $_REQUEST['channel_id']);
 
-/*
-if($is_channel){
-
-   $format = ( isset($_REQUEST['format']) ? $_REQUEST['format'] : 'xml' );
-   $callback = ( isset($_REQUEST['callback']) ? $_REQUEST['callback'] : '' );
-   yourls_api_output( $format, array(
-      'simple' => false,
-      'message' => 'Still figuring out how to do it',
-      'errorCode' => 501,
-      'callback' => $callback,
-   ) );
-
-   die();
-}
-*/
 
 // https://hooks.slack.com/services/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i
 $action = ( isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : null );
@@ -81,6 +64,18 @@ if ( false === $return ) {
                 'simple'    => 'Unknown or missing "action" parameter',
         );
 }
+
+
+
+if($is_not_channel){
+   yourls_api_output( "simple", array(
+      'simple' => true,
+      'message' => 'Your link is ' .   $return['url']['url']  . '\nSorry, but I am still figuring out how to share links on '. $channel_name,
+   ) );
+
+   die();
+}
+
 
 if( isset( $_REQUEST['callback'] ) )
         $return['callback'] = $_REQUEST['callback'];

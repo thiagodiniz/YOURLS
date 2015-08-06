@@ -13,7 +13,7 @@ require_once( dirname( __FILE__ ) . '/includes/load-yourls.php' );
 //  $_REQUEST['token']
 
 $channel_name = $_REQUEST['channel_name'];
-$is_not_channel = $channel_name ==  'privatechannel' && $channel_name == 'directmessage';
+$is_not_channel = ($channel_name == 'privatechannel') || ($channel_name == 'directmessage');
 
 $_REQUEST['url'] = $_REQUEST['text'] ;
 

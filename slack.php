@@ -76,15 +76,13 @@ if($is_not_channel){
 
    die();
 } else {
-  $channel_name = "#".$channel_name
+  $channel_name = "#".$channel_name;
   $return = array(
     'username' => 'produto.tips',
     'text' => "<". .">",
     'unfurl_links' => true,
     'icon_emoji' => ':link:'
-
   );
-
   //{"text": "<https://api.slack.com>", "unfurl_links": true}
 }
 

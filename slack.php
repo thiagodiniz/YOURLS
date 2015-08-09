@@ -68,21 +68,30 @@ if ( false === $return ) {
 
 
 if($is_not_channel){
-  $message_with_link = 'Sorry, I am still figuring out how to share links on '. $channel_name . ', but here is your shortlink: <' . $return['simple'] .'>';
+  $message_with_link = 'Sorry, I am still figuring out how to share links on '. $channel_name . ', but here is your shortlink: <  ' . $return['simple'] .'>';
 
    yourls_api_output( "simple", array(
       'simple' =>  $message_with_link
    ) );
 
    die();
+} else {
+  $channel_name = "#".$channel_name
+  $return = array(
+    'username' => 'produto.tips',
+    'text' => "<". .">",
+    'unfurl_links' => true,
+    'icon_emoji' => ':link:'
+
+  );
+
+  //{"text": "<https://api.slack.com>", "unfurl_links": true}
 }
 
 
 if( isset( $_REQUEST['callback'] ) )
         $return['callback'] = $_REQUEST['callback'];
 
-$format = ( isset( $_REQUEST['format'] ) ? $_REQUEST['format'] : 'xml' );
-
-yourls_api_output( $format, $return );
+yourls_api_output( 'json', $return );
 
 die();

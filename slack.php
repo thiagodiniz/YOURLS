@@ -79,6 +79,7 @@ if($is_not_channel){
   $shorturl  = "<". $return['simple'].">";
   $channel_name = "#".$channel_name;
   $return = array(
+    'channel' => $channel_name,
     'username' => 'produto.tips',
     'text' => $shorturl,
     'unfurl_links' => true,
@@ -87,18 +88,18 @@ if($is_not_channel){
 
   $json = json_encode($return);
   $headers = array('Content-Type' => 'application/json');
-  $webhook = "https://hooks.slack.com/services/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";
+  $webhook = "https://hooks.slack.com/services/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";
 
   $response = yourls_http_post($webhook, $headers, $json);
 
   error_log("slack_response: " . $response->status_code . " url:" . $shorturl );
-
 }
 
-
+/*
 if( isset( $_REQUEST['callback'] ) )
         $return['callback'] = $_REQUEST['callback'];
 
 yourls_api_output( 'json', $return );
+*/
 
 die();

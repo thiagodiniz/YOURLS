@@ -76,10 +76,11 @@ if($is_not_channel){
 
    die();
 } else {
+  $url  = "<". $return['simple'].">";
   $channel_name = "#".$channel_name;
   $return = array(
     'username' => 'produto.tips',
-    'text' => "<". .">",
+    'text' => $url,
     'unfurl_links' => true,
     'icon_emoji' => ':link:'
   );

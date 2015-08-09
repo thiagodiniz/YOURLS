@@ -84,10 +84,11 @@ if($is_not_channel){
     'unfurl_links' => true,
     'icon_emoji' => ':link:'
   );
-  //{"text": "<https://api.slack.com>", "unfurl_links": true}
+
+  $headers = array('Content-Type' => , 'application/json');
   $webhook = "https://hooks.slack.com/services/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"
-  //( $url, $headers = array(), $data = array(), $options = array() )
-  yourls_http_post($webhook, array(), $return);
+
+  yourls_http_post($webhook, $headers, $return);
 }
 
 

@@ -76,15 +76,18 @@ if($is_not_channel){
 
    die();
 } else {
-  $url  = "<". $return['simple'].">";
+  $shorturl  = "<". $return['simple'].">";
   $channel_name = "#".$channel_name;
   $return = array(
     'username' => 'produto.tips',
-    'text' => $url,
+    'text' => $shorturl,
     'unfurl_links' => true,
     'icon_emoji' => ':link:'
   );
   //{"text": "<https://api.slack.com>", "unfurl_links": true}
+  $webhook = "https://hooks.slack.com/services/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"
+  //( $url, $headers = array(), $data = array(), $options = array() )
+  yourls_http_post($webhook, array(), $return);
 }
 
 

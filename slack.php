@@ -85,7 +85,7 @@ if($is_not_channel){
     'icon_emoji' => ':link:'
   );
 
-  $headers = array('Content-Type' => , 'application/json');
+  $headers = array('Content-Type' => 'application/json');
   $webhook = "https://hooks.slack.com/services/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"
 
   yourls_http_post($webhook, $headers, $return);

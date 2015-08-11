@@ -92,7 +92,7 @@ $slack_user_name = 'produto.tips por ' . $slack_user_name ;
 
 $return = array(
   'channel' => $channel_name,
-  'username' => ,
+  'username' => $slack_user_name,
   'text' => $shorturl,
   'unfurl_links' => true,
   'icon_emoji' => ':link:'

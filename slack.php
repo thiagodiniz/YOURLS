@@ -12,10 +12,17 @@ require_once( dirname( __FILE__ ) . '/includes/load-yourls.php' );
 // token=e0xywzLDHsQPUwhC6lJQIlwP
 //  $_REQUEST['token']
 
+$slack_arguments = explode(" ",  $_REQUEST['text'] );
+$slack_user_name = $_REQUEST['user_name'];
 $channel_name = $_REQUEST['channel_name'];
 $is_not_channel = ($channel_name == 'privatechannel') || ($channel_name == 'directmessage');
 
-$_REQUEST['url'] = $_REQUEST['text'] ;
+
+$_REQUEST['url'] = $slack_arguments[0];
+
+if (array_key_exists(1, $slack_arguments)) {
+    $_REQUEST['keyword'] = $slack_arguments[1];
+}
 
 if ( $_REQUEST['token'] != 'e0xywzLDHsQPUwhC6lJQIlwP'){
 
@@ -67,39 +74,36 @@ if ( false === $return ) {
 
 
 
+
 if($is_not_channel){
-  $message_with_link = 'Sorry, I am still figuring out how to share links on '. $channel_name . ', but here is your shortlink: <  ' . $return['simple'] .'>';
+  $message_with_link = 'Sorry, I am still figuring out how to share links on '. $channel_name . ', but here is your shortlink:' . $shorturl;
 
-   yourls_api_output( "simple", array(
+   /*yourls_api_output( "simple", array(
       'simple' =>  $message_with_link
-   ) );
+   ) );*/
 
-   die();
+  $channel_name = $_REQUEST['channel_id'];
 } else {
-  $shorturl  = "<". $return['simple'].">";
   $channel_name = "#".$channel_name;
-  $return = array(
-    'channel' => $channel_name,
-    'username' => 'produto.tips',
-    'text' => $shorturl,
-    'unfurl_links' => true,
-    'icon_emoji' => ':link:'
-  );
-
-  $json = json_encode($return);
-  $headers = array('Content-Type' => 'application/json');
-  $webhook = "https://hooks.slack.com/services/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";
-
-  $response = yourls_http_post($webhook, $headers, $json);
-
-  error_log("slack_response: " . $response->status_code . " url:" . $shorturl );
 }
 
-/*
-if( isset( $_REQUEST['callback'] ) )
-        $return['callback'] = $_REQUEST['callback'];
+$shorturl  = "<". $return['simple'].">";
+$slack_user_name = 'produto.tips por ' . $slack_user_name ;
 
-yourls_api_output( 'json', $return );
-*/
+$return = array(
+  'channel' => $channel_name,
+  'username' => ,
+  'text' => $shorturl,
+  'unfurl_links' => true,
+  'icon_emoji' => ':link:'
+);
+
+$json = json_encode($return);
+$headers = array('Content-Type' => 'application/json');
+$webhook = "https://hooks.slack.com/services/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";
+
+$response = yourls_http_post($webhook, $headers, $json);
+
+error_log("slack_response: " . $response->status_code . " url:" . $shorturl );
 
 die();

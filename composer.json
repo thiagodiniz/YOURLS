@@ -1,12 +1,12 @@
 {
-  "name": "yourls/yourls",
-  "description": "Your Own URL Shortener",
+  "name": "Produto.tips",
+  "description": "Artigos curado por Gerente de Produtos Digitais brasileiros",
   "keywords": [
     "shortener",
     "short url",
     "url",
     "bitly"
   ],
-  "homepage": "http://yourls.org",
+  "homepage": "http://produto.tips",
   "license": "MIT"
 }

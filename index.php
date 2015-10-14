@@ -15,14 +15,15 @@ require_once( dirname(__FILE__).'/includes/load-yourls.php' );
 <html lang="pt-br">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://produto.tips/js/jquery-1.9.1.min.js?v=1.7.1" type="text/javascript"></script>
-    <script src="http://produto.tips/js/common.js?v=1.7.1" type="text/javascript"></script>
-    <script src="http://produto.tips/js/jquery.notifybar.js?v=1.7.1" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://produto.io/css/main.css" type="text/css" media="screen">
+    <script src="/js/jquery-1.9.1.min.js?v=1.7.1" type="text/javascript"></script>
+    <script src="/js/common.js?v=1.7.1" type="text/javascript"></script>
+    <script src="/js/jquery.notifybar.js?v=1.7.1" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="http://produto.tips/css/style.css?v=1.7.1" type="text/css" media="screen">
-    <link rel="stylesheet" href="http://produto.tips/css/tablesorter.css?v=1.7.1" type="text/css" media="screen">
-    <script src="http://produto.tips/js/jquery.tablesorter.min.js?v=1.7.1" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://www.produto.io/css/main.css" type="text/css" media="screen">
+
+    <link rel="stylesheet" href="/css/style.css?v=1.7.1" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/tablesorter.css?v=1.7.1" type="text/css" media="screen">
+    <script src="/js/jquery.tablesorter.min.js?v=1.7.1" type="text/javascript"></script>
   </head>
   <body class="index desktop">
     <header class="site-header">

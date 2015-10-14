@@ -22,6 +22,7 @@ require_once( dirname(__FILE__).'/includes/load-yourls.php' );
     <link rel="stylesheet" href="http://www.produto.io/css/main.css" type="text/css" media="screen">
 
     <link rel="stylesheet" href="/css/style.css?v=1.7.1" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/layout.css?v=1.7.1" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/tablesorter.css?v=1.7.1" type="text/css" media="screen">
     <script src="/js/jquery.tablesorter.min.js?v=1.7.1" type="text/javascript"></script>
   </head>

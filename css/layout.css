@@ -1,0 +1,11 @@
+.logo { background-image: url(/images/produto_io_sm_logo.png); }
+
+.site-header {
+	background-color: #FFF;
+	margin-bottom: 12px;
+}
+
+.site-header a { 
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}

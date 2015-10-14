@@ -14,6 +14,7 @@ require_once( dirname(__FILE__).'/includes/load-yourls.php' );
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <link rel="shortcut icon" href="/images/favicon.png" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="/js/jquery-1.9.1.min.js?v=1.7.1" type="text/javascript"></script>
     <script src="/js/common.js?v=1.7.1" type="text/javascript"></script>

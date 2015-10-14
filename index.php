@@ -4,74 +4,87 @@
 require_once( dirname(__FILE__).'/includes/load-yourls.php' );
 
 // Change this to match the URL of your public interface. Something like: http://your-own-domain-here.com/index.php
-$page = YOURLS_SITE . '/index.php' ;
+// $page = YOURLS_SITE . '/index.php' ;
 
 // Insert <head> markup and all CSS & JS files
-yourls_html_head();
-
-// Display title
-echo "<h1>YOURLS - Your Own URL Shortener</h1>\n";
-
-// Display left hand menu
-yourls_html_menu() ;
-
+//yourls_html_head();
 
 ?>
 
-<h2>Links</h2>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="http://produto.tips/js/jquery-1.9.1.min.js?v=1.7.1" type="text/javascript"></script>
+    <script src="http://produto.tips/js/common.js?v=1.7.1" type="text/javascript"></script>
+    <script src="http://produto.tips/js/jquery.notifybar.js?v=1.7.1" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://produto.io/css/main.css" type="text/css" media="screen">
+
+    <link rel="stylesheet" href="http://produto.tips/css/style.css?v=1.7.1" type="text/css" media="screen">
+    <link rel="stylesheet" href="http://produto.tips/css/tablesorter.css?v=1.7.1" type="text/css" media="screen">
+    <script src="http://produto.tips/js/jquery.tablesorter.min.js?v=1.7.1" type="text/javascript"></script>
+  </head>
+  <body class="index desktop">
+    <header class="site-header">
+    <div class="wrapper">
+      <h1 class="logo">
+        <a class="site-title" href="/">Produto.tips</a>
+      </h1>
+
+      <nav class="site-nav">
+        <a href="#" class="menu-icon">
+          <svg viewBox="0 0 18 15">
+            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"></path>
+            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"></path>
+            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"></path>
+          </svg>
+        </a>
+
+        <div class="trigger">
+  				<a class="page-link" href="http://produto.io">Sobre</a>
+          <a class="page-link" href="http://produto.io/artigos/">Artigos</a>
+          <a class="page-link" href="http://produto.io/signup/">Faça parte</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div id="wrap">
+    <h2>Links</h2>
 <?php
-$table_url = YOURLS_DB_TABLE_URL;
-$where = '';
+  $table_url = YOURLS_DB_TABLE_URL;
+  $where = '';
 
-yourls_table_head();
-yourls_table_tbody_start();
+  yourls_table_head();
+  yourls_table_tbody_start();
 
-// Main Query
-$where = yourls_apply_filter( 'admin_list_where', $where );
-$url_results = $ydb->get_results( "SELECT * FROM `$table_url` WHERE 1=1 $where ORDER BY `timestamp` DESC;" );
-$found_rows = false;
+  // Main Query
+  $where = yourls_apply_filter( 'admin_list_where', $where );
+  $url_results = $ydb->get_results( "SELECT * FROM `$table_url` WHERE 1=1 $where ORDER BY `timestamp` DESC;" );
+  $found_rows = false;
 
-if( $url_results ) {
-        $found_rows = true;
-        foreach( $url_results as $url_result ) {
-                $keyword = yourls_sanitize_string( $url_result->keyword );
-                $timestamp = strtotime( $url_result->timestamp );
-                $url = stripslashes( $url_result->url );
-                $ip = $url_result->ip;
-                $title = $url_result->title ? $url_result->title : '';
-                $clicks = $url_result->clicks;
+  if( $url_results ) {
+          $found_rows = true;
+          foreach( $url_results as $url_result ) {
+                  $keyword = yourls_sanitize_string( $url_result->keyword );
+                  $timestamp = strtotime( $url_result->timestamp );
+                  $url = stripslashes( $url_result->url );
+                  $ip = $url_result->ip;
+                  $title = $url_result->title ? $url_result->title : '';
+                  $clicks = $url_result->clicks;
 
-                echo yourls_table_add_row( $keyword, $url, $title, $ip, $clicks, $timestamp );
-         }
-}
+                  echo yourls_table_add_row( $keyword, $url, $title, $ip, $clicks, $timestamp );
+           }
+  }
 
-$display = $found_rows ? 'display:none' : '';
-echo '<tr id="nourl_found" style="'.$display.'"><td colspan="6">' . yourls__('No URL') . '</td></tr>';
+  $display = $found_rows ? 'display:none' : '';
+  echo '<tr id="nourl_found" style="'.$display.'"><td colspan="6">' . yourls__('No URL') . '</td></tr>';
 
-yourls_table_tbody_end();
-yourls_table_end();
+  yourls_table_tbody_end();
+  yourls_table_end();
 ?>
 
 
-<h2>Bookmarklets</h2>
-
-<p>Bookmark these links:</p>
-
-<p>
-
-<a href="javascript:(function()%7Bvar%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:enc(s)),f='<?php echo $page; ?>',l=d.location,p='?url='+enc(l.href)+'&title='+enc(d.title)+'&text='+s2,u=f+p;try%7Bthrow('ozhismygod');%7Dcatch(z)%7Ba=function()%7Bif(!w.open(u))l.href=u;%7D;if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();%7Dvoid(0);%7D)()" class="bookmarklet">Default</a>
-
-<a href="javascript:(function()%7Bvar%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:enc(s)),f='<?php echo $page; ?>',l=d.location,k=prompt(%22Custom%20URL%22),k2=(k?'&keyword='+k:%22%22),p='?url='+enc(l.href)+'&title='+enc(d.title)+'&text='+s2+k2,u=f+p;if(k!=null)%7Btry%7Bthrow('ozhismygod');%7Dcatch(z)%7Ba=function()%7Bif(!w.open(u))l.href=u;%7D;if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();%7Dvoid(0)%7D%7D)()" class="bookmarklet">Custom</a>
-
-<a href="javascript:(function()%7Bvar%20d=document,s=d.createElement('script');window.yourls_callback=function(r)%7Bif(r.short_url)%7Bprompt(r.message,r.short_url);%7Delse%7Balert('An%20error%20occured:%20'+r.message);%7D%7D;s.src='<?php echo $page; ?>?url='+encodeURIComponent(d.location.href)+'&jsonp=yourls';void(d.body.appendChild(s));%7D)();" class="bookmarklet">Popup</a>
-
-<a href="javascript:(function()%7Bvar%20d=document,k=prompt('Custom%20URL'),s=d.createElement('script');if(k!=null){window.yourls_callback=function(r)%7Bif(r.short_url)%7Bprompt(r.message,r.short_url);%7Delse%7Balert('An%20error%20occured:%20'+r.message);%7D%7D;s.src='<?php echo $page; ?>?url='+encodeURIComponent(d.location.href)+'&keyword='+k+'&jsonp=yourls';void(d.body.appendChild(s));%7D%7D)();" class="bookmarklet">Custom Popup</a>
-
-</p>
-
-<h2>Please note</h2>
-
-<p>Be aware that a public interface <strong>will</strong> attract spammers. You are strongly advised to install anti spam plugins and any appropriate counter measure to deal with this issue.</p>
 
 <?php
 

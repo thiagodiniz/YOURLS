@@ -61,7 +61,7 @@ code {
 }
 tt {
 	background:#ffc;
-	padding:0 2px;		
+	padding:0 2px;
 }
 
 input, textarea {
@@ -328,3 +328,5 @@ a.bookmarklet:hover {
 tr.plugin.active a{ font-weight:bolder;}
 body.desktop tr.plugin td.plugin_desc small{ visibility:hidden;}
 tr:hover.plugin td.plugin_desc small{ visibility:visible;}
+
+.logo { background-image: url(/images/produto_io_sm_logo.png);
